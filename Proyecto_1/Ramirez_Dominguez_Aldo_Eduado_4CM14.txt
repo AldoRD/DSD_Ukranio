@@ -1,0 +1,819 @@
+// 1- Escribir un programa que reciba una cantidad en grados centígrados e indique a cuánto 
+// equivalen en grados Fahrenheit.
+
+import java.util.Scanner;
+
+public class Ejercicio1 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Temperatura en grados Celsius: ");
+
+        double celsius = input.nextDouble();
+        double fahrenheit = (celsius * 1.8) + 32;
+
+        System.out.println(celsius + " grados Celsius equivale a " + fahrenheit + " grados Fahrenheit.");
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 2- Escriba un programa que solicite los valores de a, b, c y d (como números enteros) y calcule el valor de la 
+// multiplicación y lo muestre en pantalla en forma de número con decimales y en forma de fracción 
+// (ejemplo 17/33).
+
+import java.util.Scanner;
+
+public class Ejercicio2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Ingrese a: ");
+        int a = input.nextInt();
+        System.out.print("Ingrese b: ");
+        int b = input.nextInt();
+        System.out.print("Ingrese c: ");
+        int c = input.nextInt();
+        System.out.print("Ingrese d: ");
+        int d = input.nextInt();
+        
+        int numerador = a * c;
+        int denominador = b * d;
+        
+        double resultadoDecimal = (double) numerador / denominador;
+        System.out.println("El resultado decimal es: " + resultadoDecimal);
+        System.out.println("El resultado en fracción es: " + numerador + "/" + denominador);
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 3- Escribe un programa que calcule el radio de la circunferencia inscrita en un triángulo
+
+import java.util.Scanner;
+
+public class Ejercicio3{
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingresa las medidas de los lados de un triángulo: ");
+        System.out.print("Lado a: ");
+        double a = input.nextDouble();
+        System.out.print("Lado b: ");
+        double b = input.nextDouble();
+        System.out.print("Lado c: ");
+        double c = input.nextDouble();
+
+        double s = (a + b + c) / 2;
+        double area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        double radio = area / s;
+
+        System.out.println("El radio de la circunferencia es: " + radio);
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 5- Una universidad comenzará a asignar a sus estudiantes a diferentes dormitorios según su sexo y 
+// edad. Escribe un programa que solicite el sexo (H/M) y edad e indique de acuerdo con la siguiente tabla 
+// en qué edificio deben ser asignados. 
+
+import java.util.Scanner;
+
+public class Ejercicio4{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Ingrese el sexo H o M: ");
+        String sexo = input.nextLine().toUpperCase();
+        System.out.println("Ingrese la edad: ");
+        int edad = input.nextInt();
+        String edificio = "";
+
+        if ((sexo.equals("H") || sexo.equals("M")) && edad >= 18) {
+            if (sexo.equals("H") && edad == 18) 
+                edificio = "A";
+            else if (sexo.equals("M") && edad == 18) 
+                edificio = "B";
+            else if (sexo.equals("H") && edad >= 19 && edad <= 22)
+                edificio = "C";
+            else if (sexo.equals("M") && edad >= 19 && edad <= 22)
+                edificio = "D";
+            else if (sexo.equals("H") && edad > 22)
+                edificio = "E1";
+            else if (sexo.equals("M") && edad > 22)
+                edificio = "E2";
+            System.out.println("El estudiante pertenece al edificio " + edificio);
+        } else {
+            System.out.println("Valores no validos.");
+        }
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// Escribir un programa que indique cuántos días de vacaciones le corresponden a un empleado 
+// considerando los años que ha trabajado en la empresa. Entre 1 y 5 años corresponden 5 días de 
+// vacaciones, entre 6 y 10 años deben ser 10 días de vacaciones, de allí en adelante, es un día de 
+// vacaciones extra por cada año de trabajo (a partir de 10), a partir de 20 años de trabajo se añaden 2 días 
+// de vacaciones por cada año hasta un máximo de 45 días.
+
+import java.util.Scanner;
+
+public class Ejercicio5{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese los años trabajados en la empresa: ");
+        int tiempoTrabajado = scanner.nextInt();
+        scanner.close();
+        
+        int diasVacaciones;
+        if (tiempoTrabajado >= 1 && tiempoTrabajado <= 5)
+            diasVacaciones = 5;
+        else if (tiempoTrabajado >= 6 && tiempoTrabajado <= 10)
+            diasVacaciones = 10;
+        else if (tiempoTrabajado >= 11 && tiempoTrabajado <= 19)
+            diasVacaciones = 10 + (tiempoTrabajado - 10);
+        else if (tiempoTrabajado >= 20) {
+            diasVacaciones = 25 + (tiempoTrabajado - 20) * 2;
+            if (diasVacaciones > 45) {
+                diasVacaciones = 45;
+            }
+        } else {
+            System.out.println("El número no es válido.");
+            return;
+        }
+        
+        System.out.println("El empleado tiene" + diasVacaciones + " días de vacaciones.");
+    }
+}
+
+*********************************************************************
+
+// 6- Calcular el cobro que una caseta de cuota debe realizar a un vehículo de acuerdo con las 
+// siguientes reglas: Motocicleta = $20, 2 ejes(automóviles) = $40, 3 ejes (camionetas) = $60, 4, 5 y 6 ejes 
+// (camiones de carga) = $250, eje adicional $50. Por ejemplo si llega un trailer de 8 ejes se deben cobrar 
+// $350.
+
+import java.util.Scanner;
+
+public class Ejercicio6{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int numeroEjes;
+        double precio;
+
+        System.out.print("Ingrese la cantidad de ejes del vehículo: ");
+        numeroEjes = input.nextInt();
+
+        if (numeroEjes == 1)
+            precio = 20.0;
+        else if (numeroEjes == 2)
+            precio = 40.0;
+        else if (numeroEjes == 3)
+            precio = 60.0;
+        else if (numeroEjes >= 4 && numeroEjes <= 6)
+            precio = 250.0;
+        else
+            precio = 250.0 + ((numeroEjes - 6) * 50.0);
+
+        System.out.println("El precio es: $" + precio);
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 7- La Comisión Federal de Electricidad cobra el consumo de electricidad de acuerdo con un 
+// tabulador basado en los kilowatts consumidos en el periodo. 
+
+import java.util.Scanner;
+
+public class Ejercicio7{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Ingrese la cantidad de kW consumidos: ");
+        int kWConsumidos = input.nextInt();
+
+        System.out.print("Ingrese el tipo de contrato H o N: ");
+        String contrato = input.next();
+        input.close();
+
+        double costoTotal = 0;
+
+        if (contrato.equalsIgnoreCase("H")) {
+            if (kWConsumidos <= 250)
+                costoTotal = kWConsumidos * 0.65;
+            else if (kWConsumidos <= 500)
+                costoTotal = 250 * 0.65 + (kWConsumidos - 250) * 0.85;
+            else if (kWConsumidos <= 1200)
+                costoTotal = 250 * 0.65 + 250 * 0.85 + (kWConsumidos - 500) * 1.5;
+            else if (kWConsumidos <= 2100)
+                costoTotal = 250 * 0.65 + 250 * 0.85 + 700 * 1.5 + (kWConsumidos - 1200) * 2.5;
+            else
+                costoTotal = 250 * 0.65 + 250 * 0.85 + 700 * 1.5 + 900 * 2.5 + (kWConsumidos - 2100) * 3.0;
+        } else if (contrato.equalsIgnoreCase("N"))
+            costoTotal = kWConsumidos * 5.0;
+        else {
+            System.out.println("El dato es invalido");
+            return;
+        }
+
+        System.out.println("El costo total es de: $" + costoTotal);
+    }
+}
+
+
+*********************************************************************
+
+// 8- Escribe un programa que pida tres números y que los muestre ordenados de mayor a menor.
+
+import java.util.Scanner;
+
+public class Ejercicio8{
+   public static void main(String[] args) {
+
+      Scanner input = new Scanner(System.in);
+      System.out.print("Primer número: ");
+      int num1 = input.nextInt();
+      System.out.print("Segundo número: ");
+      int num2 = input.nextInt();
+      System.out.print("Tercer número: ");
+      int num3 = input.nextInt();
+
+      if (num1 >= num2 && num1 >= num3) {
+         if (num2 >= num3)
+            System.out.println(num1 + ", " + num2 + ", " + num3);
+         else
+            System.out.println(num1 + ", " + num3 + ", " + num2);
+      } else if (num2 >= num1 && num2 >= num3) {
+         if (num1 >= num3)
+            System.out.println(num2 + ", " + num1 + ", " + num3);
+         else
+            System.out.println(num2 + ", " + num3 + ", " + num1);
+      } else if (num3 >= num1 && num3 >= num2) {
+         if (num1 >= num2)
+            System.out.println(num3 + ", " + num1 + ", " + num2);
+         else
+            System.out.println(num3 + ", " + num2 + ", " + num1);
+      }
+      input.close();
+   }
+}
+
+
+*********************************************************************
+
+// 9- Lee la definición de números capicúa y escribe un programa que reciba un número entre 0 y 
+// 9999 e indique si es un número capicúa. Nota, no es necesario utilizar ciclos, es posible realizarlo 
+// utilizando divisiones enteras.
+
+import java.util.Scanner;
+
+public class Ejercicio9{
+    public static void main(String[] args) {
+        String isCapicua = "El número es capicúa";
+        String isNotCapicua = "El número no es capicúa";
+        Scanner input = new Scanner(System.in);
+        int num, unit, decenas, centenas, millares;
+
+        System.out.print("Ingrese un número (0-9999): ");
+        num = input.nextInt();
+
+        if (num < 10) {
+            System.out.println(isCapicua);
+        } else if (num < 100) {
+            if (num / 10 == num % 10)
+                System.out.println(isCapicua);
+            else
+                System.out.println(isNotCapicua);
+        } else if (num < 1000) {
+            unit = num % 10;
+            centenas = num / 100;
+            if (unit == centenas)
+                System.out.println(isCapicua);
+            else
+                System.out.println(isNotCapicua);
+        } else if (num < 10000) {
+            unit = num % 10;
+            decenas = (num / 10) % 10;
+            centenas = (num / 100) % 10;
+            millares = num / 1000;
+            if (unit == millares && decenas == centenas)
+                System.out.println(isCapicua);
+            else
+                System.out.println(isNotCapicua);
+        } else {
+            System.out.println("El número no es válido");
+        }
+        input.close();
+    }
+}
+
+
+*********************************************************************
+
+// 10- Escribe un programa que solicite al usuario un número entero y dé como resultado la suma de 
+// todos los números desde el 1 hasta dicho numero
+
+import java.util.Scanner;
+
+public class Ejercicio10{
+   public static void main(String[] args) {
+      Scanner input = new Scanner(System.in);
+      System.out.print("Introduce un número positivo: ");
+      int numero = input.nextInt();
+      
+      int sumatotal = 0;
+      for (int num = 1; num <= numero; num++)
+         sumatotal += num;
+      
+      System.out.println("La suma de los números desde 1 hasta " + numero + " es: " + sumatotal);
+      input.close();
+   }
+}
+
+
+*********************************************************************
+
+// Encontrar los números entre el 1 y el 5000 que cumplen la regla de que la suma del cubo de sus 
+// dígitos es igual al número mismo. Ejemplo: 153 = 1^3 + 5^3 + 3^3
+
+public class Ejercicio11{
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5000; i++) {
+            int numero = i;
+            int suma = 0;
+            
+            while (numero > 0) {
+                int digito = numero % 10;
+                suma += Math.pow(digito, 3);
+                numero /= 10;
+            }
+            
+            if (suma == i)
+                System.out.println(i + " cumple con la regla");
+        }
+    }
+}
+
+
+*********************************************************************
+
+// 12 - Un número perfecto es un número natural que es igual a la suma de sus divisores propios, sin 
+// incluirse él mismo. Por ejemplo, el número 6 es perfecto porque sus divisores son 1, 2 y 3; y dado que 
+// 1+2+3 = 6 entonces el 6 es un número perfecto. Escriba un programa que indique los números perfectos 
+// existentes entre 1 y 10,000
+
+public class Ejercicio12{
+    public static void main(String[] args) {
+        int n = 10000;
+        for (int i = 1; i <= n; i++) {
+            int sum = 0;
+            for (int j = 1; j < i; j++)
+                if (i % j == 0)
+                    sum += j;
+            if (sum == i)
+                System.out.println(i + " :número perfecto");
+        }
+    }
+}
+
+
+*********************************************************************
+
+// 13 - Calcular cuanto dinero tendría en una cuenta de ahorro al final de 20 años si al inicio de cada 
+// año añado $10,000, el rendimiento anual es 5% y reinvierto las ganancias obtenidas cada año.
+
+public class Ejercicio13 {
+    public static void main(String[] args) {
+        double balance = 0;
+        double interes = 0.05;
+        double depositoAño = 10000;
+        
+        for (int year = 1; year <= 20; year++) {
+            balance += depositoAño;
+            double interest = balance * interes;
+            balance += interest;
+        }
+        
+        System.out.println("El saldo de la cuenta es: $" + balance);
+    }
+}
+
+*********************************************************************
+
+// Escribe un programa que lea un número X y un número Y. Mostrar los números de Y en Y, 
+// comenzando en X hasta llegar a 200. Ejmplo: X = 8, Y = 2, el resultado comenzaría de la siguiente 
+// manera: 8, 10, 12, 14, 16, 18 …
+
+import java.util.Scanner;
+
+public class Ejercicio14{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Ingrese X: ");
+        int x = input.nextInt();
+        System.out.print("Ingrese Y: ");
+        int y = input.nextInt();
+
+        int num = x;
+
+        while (num <= 200) {
+            System.out.print(num + " ");
+            num += y;
+        }
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 15 - En este programa la computadora debe elegir un número al azar entre 1 y 100 y solicitará al 
+// usuario que “adivine” el número. A cada intento del usuario la computadora debe indicar si el número 
+// que el usuario introdujo es mayor o menor que el número prefijado. El programa debe terminar cuando 
+// el usuario “adivine” el número o introduzca el número “0” para salir.
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Ejercicio15{
+
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int numeroRandom = rand.nextInt(100) + 1;
+        Scanner input = new Scanner(System.in);
+        int intentos = 0;
+        int numeroIngresado;
+        
+        System.out.println("Ingresa un número entre 1 y 100 para adivinar el número (0 para salir)");
+        
+        while (true) {
+            intentos++;
+            System.out.print("Intento #" + intentos + ": ");
+            numeroIngresado = input.nextInt();
+            
+            if (numeroIngresado == 0) {
+                System.out.println("Hasta luego");
+                break;
+            } else if (numeroIngresado == numeroRandom) {
+                System.out.println("Adivinaste el número en " + intentos + " intentos.");
+                break;
+            } else if (numeroIngresado > numeroRandom)
+                System.out.println("El número es menor.");
+            else
+                System.out.println("El número es mayor.");
+        }
+        input.close();
+    }
+}
+
+
+*********************************************************************
+
+// 16 - El programa debe leer números mientras sean diferentes de 0. Posteriormente calcular el 
+// promedio de los números leídos.
+
+import java.util.Scanner;
+
+public class Ejercicio16{
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int suma = 0;
+        int contador = 0;
+
+        System.out.println("Ingresa una serie de números (0 para salir):");
+
+        int numero = input.nextInt();
+
+        while (numero != 0) {
+            suma += numero;
+            contador += 1;
+            numero = input.nextInt();
+        }
+
+        if (contador == 0)
+            System.out.println("No hay numeros");
+        else {
+            double promedio = (double) suma / contador;
+            System.out.println("El promedio: " + promedio);
+        }
+
+        input.close();
+    }
+}
+
+*********************************************************************
+
+// 17 - Leer 10 números enteros, guardarlos en orden inverso al que fueron introducidos y mostrarlos 
+// en pantalla
+
+import java.util.Scanner;
+
+public class Ejercicio17{
+  public static void main(String[] args) {
+    int[] numeros = new int[10];
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Introduce 10 números: ");
+
+    for (int i = 0; i < 10; i++)
+      numeros[i] = input.nextInt();
+
+    System.out.println("Los números en inverso:");
+
+    for (int i = 9; i >= 0; i--)
+      System.out.println(numeros[i]);
+
+    input.close();
+  }
+}
+
+*********************************************************************
+
+// 18 - Leer un arreglo de 10 nombres de ciudades e indicar cuál es la que tiene el nombre más largo.
+
+import java.util.Scanner;
+
+public class Ejercicio18{
+  public static void main(String[] args) {
+    String[] ciudades = new String[10];
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Introduce los nombres de 10 ciudades:");
+
+    for (int i = 0; i < 10; i++)
+      ciudades[i] = input.nextLine();
+
+    String ciudadMasLarga = ciudades[0];
+
+    for (int i = 1; i < 10; i++)
+      if (ciudades[i].length() > ciudadMasLarga.length())
+        ciudadMasLarga = ciudades[i];
+
+    System.out.println("La ciudad con el nombre más largo es " + ciudadMasLarga);
+    input.close();
+  }
+}
+
+
+
+*********************************************************************
+
+// 19 - Leer en un arreglo una serie de 10 números e indicar si todos los elementos están ordenados de 
+// forma descendente, es decir, si cumplen la regla de que cada elemento del arreglo es menor o igual que 
+// el elemento anterior.
+
+import java.util.Scanner;
+
+public class Ejercicio19{
+  public static void main(String[] args) {
+    int[] numeros = new int[10];
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Introduce 10 números:");
+
+    for (int i = 0; i < 10; i++)
+      numeros[i] = input.nextInt();
+
+    boolean ordenDescendente = true;
+
+    for (int i = 1; i < 10; i++)
+      if (numeros[i] > numeros[i-1]) {
+        ordenDescendente = false;
+        break;
+      }
+
+    if (ordenDescendente)
+      System.out.println("Los números están ordenados");
+    else
+      System.out.println("Los números no están ordenados");
+    
+    input.close();
+  }
+}
+
+
+*********************************************************************
+
+// 20 - Leer una serie de 10 números, moverlos una posición hacia adelante en el arreglo y mostrar el 
+// arreglo resultante. Ejemplo, tenemos el siguiente arreglo 1, 2, 3, 4, 5, si desplazamos los elementos una 
+// posición hacia adelante debemos obtener 5, 1, 2, 3, 4. Es decir, el primer elemento se mueve hacia el 
+// segundo lugar, el segundo al tercero, etc., y el último al primero.
+
+import java.util.Scanner;
+
+public class Ejercicio20{
+  public static void main(String[] args) {
+    int[] numeros = new int[10];
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Introduce 10 números:");
+
+    for (int i = 0; i < 10; i++)
+      numeros[i] = input.nextInt();
+
+    int ultimoNumero = numeros[9];
+
+    for (int i = 9; i > 0; i--)
+      numeros[i] = numeros[i-1];
+
+    numeros[0] = ultimoNumero;
+
+    System.out.println("Arreglo final:");
+
+    for (int i = 0; i < 10; i++)
+      System.out.print(numeros[i] + " ");
+
+    input.close();
+  }
+}
+
+*********************************************************************
+
+// 21 - Escribe un programa que lea un arreglo bidimensional de 5x5 y muestre la suma del total del 
+// arreglo.
+
+import java.util.Scanner;
+
+public class Ejercicio21{
+  public static void main(String[] args) {
+    int[][] arreglo = new int[5][5];
+    int suma = 0;
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Introduce los elementos del arreglo:");
+
+    for (int i = 0; i < 5; i++)
+      for (int j = 0; j < 5; j++) {
+        arreglo[i][j] = input.nextInt();
+        suma += arreglo[i][j];
+      }
+
+    System.out.println("La suma total es: " + suma);
+    input.close();
+  }
+}
+
+
+*********************************************************************
+
+// 22 - Escribe un programa que solicite al usuario los tamaños de las dos matrices a multiplicar y luego 
+// solicite los valores, realice la multiplicación y muestre el resultado
+
+import java.util.Scanner;
+
+public class Ejercicio22{
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    System.out.println("Introduce el tamaño de la matriz 1 (filas columnas):");
+    int row1 = input.nextInt();
+    int cols1 = input.nextInt();
+
+    System.out.println("Introduce el tamaño de la matriz 2 (filas columnas):");
+    int row2 = input.nextInt();
+    int cols2 = input.nextInt();
+
+    if (cols1 != row2) {
+      System.out.println("No es posible realizar la multiplicación");
+      input.close();
+      return;
+    }
+
+    int[][] matrizA = new int[row1][cols1];
+    int[][] matrizB = new int[row2][cols2];
+    int[][] res = new int[row1][cols2];
+
+    System.out.println("Introduce los elementos de la matriz A:");
+
+    for (int i = 0; i < row1; i++) {
+      for (int j = 0; j < cols1; j++) {
+        matrizA[i][j] = input.nextInt();
+      }
+    }
+
+    System.out.println("Introduce los elementos de la matriz B:");
+
+    for (int i = 0; i < row2; i++)
+      for (int j = 0; j < cols2; j++)
+        matrizB[i][j] = input.nextInt();
+    
+
+    for (int i = 0; i < row1; i++) 
+      for (int j = 0; j < cols2; j++)
+        for (int k = 0; k < cols1; k++)
+          res[i][j] += matrizA[i][k] * matrizB[k][j];
+        
+    System.out.println("El resultado es:");
+
+    for (int i = 0; i < row1; i++) {
+      for (int j = 0; j < cols2; j++)
+        System.out.print(res[i][j] + " ");
+      System.out.println();
+    }
+
+    input.close();
+  }
+}
+
+*********************************************************************
+
+// 23 - Escribe un programa que lea un archivo de texto y que escriba en otro archivo solo las líneas 
+// impares del archivo original
+
+import java.io.*;
+
+public class Ejercicio23 {
+  public static void main(String[] args) {
+    BufferedReader lector = null;
+    BufferedWriter escritor = null;
+
+    try {
+      lector = new BufferedReader(new FileReader("original.txt"));
+      escritor = new BufferedWriter(new FileWriter("destino.txt"));
+
+      String linea;
+      int contador = 1;
+
+      while ((linea = lector.readLine()) != null) {
+        if (contador % 2 == 1) {
+          escritor.write(linea);
+          escritor.newLine();
+        }
+        contador += 1;
+      }
+
+      System.out.println("Se realizo la copia de las lineas");
+    } catch (IOException e) {
+      System.out.println("Error al leer el archivo");
+      e.printStackTrace();
+    } finally {
+      try {
+        if (lector != null)
+          lector.close();
+        if (escritor != null)
+          escritor.close();
+      } catch (IOException e) {
+        System.out.println("Error con los archivos");
+        e.printStackTrace();
+      }
+    }
+  }
+}
+
+
+*********************************************************************
+
+// 24 - Escribe un programa que lea un archivo de texto plano, lo analice y obtenga la cantidad de veces 
+// que se encuentra cada letra en el archivo
+
+import java.io.*;
+import java.util.*;
+
+public class Ejercicio24{
+  public static void main(String[] args) {
+    BufferedReader lector = null;
+    HashMap<Character, Integer> mapa = new HashMap<>();
+
+    try {
+      lector = new BufferedReader(new FileReader("archivo.txt"));
+
+      String line;
+      while ((line = lector.readLine()) != null) {
+        for (char c : line.toCharArray()) {
+          if (Character.isLetter(c)) {
+            char letra = Character.toLowerCase(c);
+            int cantidad = mapa.getOrDefault(letra, 0);
+            mapa.put(letra, cantidad + 1);
+          }
+        }
+      }
+
+      for (char letra = 'a'; letra <= 'z'; letra++) {
+        if (mapa.containsKey(letra)) {
+          System.out.println("La letra " + letra + " aparece en el archivo" + mapa.get(letra) + " veces.");
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("Fallo al leer los archivos");
+      e.printStackTrace();
+    } finally {
+      try {
+        if (lector != null) {
+          lector.close();
+        }
+      } catch (IOException e) {
+        System.out.println("Fallo con los archivos");
+        e.printStackTrace();
+      }
+    }
+  }
+}
+
+
+*********************************************************************
+
