@@ -1,0 +1,5 @@
+com/mycompany/app/App.class
+com/mycompany/app/FrontendSearchRequest.class
+com/mycompany/app/WebClient.class
+com/mycompany/app/FrontendSearchResponse.class
+com/mycompany/app/WebServer.class
